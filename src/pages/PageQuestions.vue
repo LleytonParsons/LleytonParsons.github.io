@@ -3,13 +3,20 @@
         <h1 class="header-text">Self-Diagnostic Questionnaire</h1>
         <div class="rectangle">
             <p class="question">1. Do your eyes hurt?</p>
-            <!--{{ button-style }}-->
-            <Button :style="{color: buttonColor}" class="button-style" @click="changeColor">Yes</Button>
-            <Button :style="{color: buttonColor}" class="button-style" @click="changeColor">No</Button>
+            <Button :style="{color: yesButtonColor}" class="button-style" @click="changeColor('yes')">Yes</Button>
+            <Button :style="{color: noButtonColor}" class="button-style" @click="changeColor('no')">No</Button>
             <p class="question">2. Do you feel tired?</p>
+            <Button :style="{color: yesButtonColor}" class="button-style" @click="changeColor('yes')">Yes</Button>
+            <Button :style="{color: noButtonColor}" class="button-style" @click="changeColor('no')">No</Button>
             <p class="question">3. Have you been sitting down or standing up recently?</p>
+            <Button :style="{color: yesButtonColor}" class="button-style" @click="changeColor('yes')">Sitting</Button>
+            <Button :style="{color: noButtonColor}" class="button-style" @click="changeColor('no')">Standing</Button>
             <p class="question">4. Have you walked away from this computer recently?</p>
+            <Button :style="{color: yesButtonColor}" class="button-style" @click="changeColor('yes')">Yes</Button>
+            <Button :style="{color: noButtonColor}" class="button-style" @click="changeColor('no')">No</Button>
             <p class="question">5. Focus your eyes on something far from this screen. Can you see it well?</p>
+            <Button :style="{color: yesButtonColor}" class="button-style" @click="changeColor('yes')">Yes</Button>
+            <Button :style="{color: noButtonColor}" class="button-style" @click="changeColor('no')">No</Button>
         </div>
     </div>
 </template>
@@ -20,12 +27,17 @@ import Button from 'primevue/button'
 export default{
     data() {
         return {
-            buttonColor: 'black', selected:0
+            yesButtonColor: 'black',
+            noButtonColor: 'black'
         }
     },
     methods: {
-        changeColor() {
-            this.buttonColor = this.buttonColor === 'black' ? 'blue' : 'black';
+        changeColor(button) {
+            if(button === 'yes'){
+                this.yesButtonColor = this.yesButtonColor === 'black' ? 'blue' : 'black';
+            } else if (button === 'no'){
+                this.noButtonColor = this.noButtonColor === 'black' ? 'blue' : 'black';
+            }
         }
     }
 }
@@ -34,7 +46,7 @@ export default{
 <style scoped>
 .rectangle{
    width: center;
-   height: 900px;
+   height: 1500px;
    background-color: rgb(227, 227, 227);
    display:grid;
    grid-template-columns: repeat(5);
